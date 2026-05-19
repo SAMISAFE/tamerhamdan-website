@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>תאמר חמדאן | רואה חשבון וליווי פיננסי לעסקים</title>
+<meta name="description" content="שירותי ראיית חשבון, הנהלת חשבונות, דוחות שנתיים, ייעוץ מס וליווי פיננסי לעצמאים וחברות. קבעו שיחת ייעוץ עם תאמר חמדאן." />
+<meta name="theme-color" content="#0B1220" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Assistant', 'Heebo', 'system-ui', 'sans-serif'],
+        display: ['Heebo', 'Assistant', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        ink: { 900: '#0B1220', 800: '#111827', 700: '#1F2937' },
+        emerald: { 600: '#0F766E', 500: '#10B981', 400: '#34D399' },
+        gold: { 500: '#D6A84F', 400: '#E0BC78' },
+        cream: '#F8F6F0',
+        line: '#E5E7EB',
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(16,24,40,.04), 0 8px 24px -8px rgba(16,24,40,.08)',
+        lift: '0 12px 32px -12px rgba(16,24,40,.18)',
+        glow: '0 10px 40px -12px rgba(15,118,110,.35)',
+      },
+      borderRadius: { '2xl': '20px', '3xl': '28px' },
+    }
+  }
+}
+</script>
+<style>
+  :root { color-scheme: light; }
+  html, body { background:#F8F6F0; color:#0B1220; font-family: Assistant, Heebo, system-ui, sans-serif; }
+  body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Subtle grid background */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(11,18,32,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,18,32,.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black 55%, transparent 85%);
+  }
+  .bg-grid-dark {
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .paper {
+    background:
+      radial-gradient(1200px 600px at 100% -10%, rgba(15,118,110,.06), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(214,168,79,.07), transparent 60%),
+      #F8F6F0;
+  }
+  .hairline { box-shadow: inset 0 0 0 1px #E5E7EB; }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease-out, transform .7s ease-out; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .08s }
+  .reveal-delay-2 { transition-delay: .16s }
+  .reveal-delay-3 { transition-delay: .24s }
+  .reveal-delay-4 { transition-delay: .32s }
+
+  /* Float */
+  @keyframes floaty { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+  .floaty { animation: floaty 7s ease-in-out infinite; }
+  .floaty.slow { animation-duration: 10s; }
+  .floaty.delay { animation-delay: 1.5s; }
+
+  /* Chart draw */
+  .chart-line { stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 2s ease-out .3s; }
+  .chart-line.in { stroke-dashoffset: 0; }
+
+  /* Bars rise */
+  .bar { transform-origin: bottom; transform: scaleY(0); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .bar.in { transform: scaleY(1); }
+
+  /* Accordion */
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+  .chev { transition: transform .25s ease; }
+
+  /* Buttons */
+  .btn { display:inline-flex; align-items:center; gap:.5rem; font-weight:600; border-radius:14px; transition: all .2s ease; }
+  .btn-primary { background:#0F766E; color:#fff; padding:.9rem 1.25rem; box-shadow: 0 8px 24px -10px rgba(15,118,110,.55); }
+  .btn-primary:hover { background:#0E6B63; transform: translateY(-1px); box-shadow: 0 12px 28px -10px rgba(15,118,110,.55); }
+  .btn-ghost { background:#fff; color:#0B1220; padding:.9rem 1.25rem; box-shadow: inset 0 0 0 1px #E5E7EB; }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 1px #0F766E; color:#0F766E; }
+  .btn-gold { background:#D6A84F; color:#0B1220; }
+  .btn-gold:hover { background:#E0BC78; }
+
+  /* Sticky header blur */
+  .nav-blur { backdrop-filter: saturate(140%) blur(10px); -webkit-backdrop-filter: saturate(140%) blur(10px); }
+
+  /* Focus */
+  :focus-visible { outline: 2px solid #0F766E; outline-offset: 2px; border-radius: 8px; }
+
+  /* RTL arrow flip helper */
+  .rtl-flip { transform: scaleX(-1); }
+
+  /* Mobile menu */
+  .menu-open { transform: translateY(0); opacity:1; pointer-events:auto; }
+  .menu-closed { transform: translateY(-8px); opacity:0; pointer-events:none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .floaty, .chart-line, .bar { transition: none !important; animation: none !important; transform: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; }
+  }
+</style>
+</head>
+<body class="paper antialiased">
+
+<!-- ====== Header ====== -->
+<header id="hdr" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+  <div class="nav-blur bg-cream/70 border-b border-line/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2.5">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-ink-900 text-cream">
+          <!-- monogram -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M9 6v14M15 6v14" stroke="#D6A84F" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="font-display font-bold tracking-tight text-ink-900">
+          תאמר חמדאן <span class="text-gray-400 font-normal">|</span> <span class="text-emerald-600 font-semibold">רואה חשבון</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm text-gray-700">
+        <a href="#services" class="hover:text-emerald-600">שירותים</a>
+        <a href="#process" class="hover:text-emerald-600">איך זה עובד</a>
+        <a href="#audience" class="hover:text-emerald-600">למי זה מתאים</a>
+        <a href="#faq" class="hover:text-emerald-600">שאלות נפוצות</a>
+        <a href="#contact" class="hover:text-emerald-600">יצירת קשר</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#contact" class="hidden sm:inline-flex btn btn-primary text-sm !py-2.5 !px-4">
+          קביעת שיחת ייעוץ
+          <svg class="rtl-flip" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl hairline bg-white" aria-label="פתיחת תפריט">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#0B1220" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="menu" class="md:hidden menu-closed transition-all duration-200 origin-top bg-white border-t border-line">
+      <div class="px-4 py-4 grid gap-2 text-sm">
+        <a href="#services" class="py-2">שירותים</a>
+        <a href="#process" class="py-2">איך זה עובד</a>
+        <a href="#audience" class="py-2">למי זה מתאים</a>
+        <a href="#faq" class="py-2">שאלות נפוצות</a>
+        <a href="#contact" class="py-2">יצירת קשר</a>
+        <a href="#contact" class="btn btn-primary justify-center mt-2">קביעת שיחת ייעוץ</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top" class="pt-16">
+
+<!-- ====== Hero ====== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid pointer-events-none" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-20 pb-16 lg:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center relative">
+
+    <div class="lg:col-span-7">
+      <div class="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white hairline text-xs text-gray-700">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        ליווי חשבונאי ופיננסי לעסקים בישראל
+      </div>
+
+      <h1 class="reveal reveal-delay-1 mt-5 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05] font-extrabold tracking-tight text-ink-900">
+        רואה חשבון שמכניס
+        <span class="relative inline-block">
+          <span class="relative z-10">סדר, שקט וביטחון</span>
+          <span class="absolute inset-x-0 bottom-1 h-3 bg-gold-400/40 -z-0 rounded"></span>
+        </span>
+        לעסק שלך
+      </h1>
+
+      <p class="reveal reveal-delay-2 mt-6 text-lg text-gray-700 max-w-xl leading-relaxed">
+        שירותי ראיית חשבון, מיסוי, דוחות וליווי פיננסי לעצמאים, חברות ובעלי עסקים — עם גישה ברורה, מקצועית ואישית.
+      </p>
+
+      <div class="reveal reveal-delay-3 mt-7 flex flex-wrap items-center gap-3">
+        <a href="#contact" class="btn btn-primary">
+          לקביעת שיחת ייעוץ
+          <svg class="rtl-flip" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <!-- TODO: confirm WhatsApp link -->
+        <a href="https://wa.me/972000000000" class="btn btn-ghost" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5Z" stroke="#0F766E" stroke-width="1.6"/>
+            <path d="M8.5 8.8c.2-.5.5-.5.7-.5h.6c.2 0 .4 0 .6.5l.9 2c.1.3.1.5 0 .7l-.4.5c-.2.2-.3.4-.1.7.7 1.2 1.5 2 2.8 2.6.3.2.5 0 .7-.1l.5-.6c.2-.2.4-.2.7-.1l1.9.9c.4.2.5.4.5.6 0 .3 0 1.3-.4 1.7-.4.4-1.3.9-2 .9-2 0-3.8-1-5.3-2.5C7.8 14.7 6.8 13 6.8 11c0-.6.4-1.6.7-2 .2-.2.5-.2 1-.2Z" fill="#0F766E"/>
+          </svg>
+          שלחו הודעה בוואטסאפ
+        </a>
+      </div>
+
+      <p class="reveal reveal-delay-4 mt-4 text-sm text-gray-500">
+        מענה מקצועי, ברור וללא התחייבות ראשונית.
+      </p>
+
+      <!-- Trust strip -->
+      <div class="reveal reveal-delay-4 mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-white rounded-2xl hairline p-4 flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z" stroke="currentColor" stroke-width="1.7"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="text-sm">
+            <div class="font-semibold text-ink-900">רואה חשבון מקצועי</div>
+            <div class="text-gray-500 text-xs">עבודה מסודרת מול הרשויות</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl hairline p-4 flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9l9-4 9 4-9 4-9-4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 11v4c0 1 2 2 5 2s5-1 5-2v-4" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <div class="text-sm">
+            <div class="font-semibold text-ink-900">מרצה בתחום הפיננסי<sup class="text-gray-400">*</sup></div>
+            <div class="text-gray-500 text-xs">הסברים בגובה העיניים</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl hairline p-4 flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16v12H4z" stroke="currentColor" stroke-width="1.7"/><path d="M9 7V5h6v2M4 11h16" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <div class="text-sm">
+            <div class="font-semibold text-ink-900">ליווי אישי לעסקים</div>
+            <div class="text-gray-500 text-xs">מענה זמין ומותאם</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl hairline p-4 flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <div class="text-sm">
+            <div class="font-semibold text-ink-900">מענה מול רשויות המס</div>
+            <div class="text-gray-500 text-xs">מס הכנסה, מע״מ, ביטוח לאומי</div>
+          </div>
+        </div>
+      </div>
+      <p class="text-[11px] text-gray-400 mt-2">* בהתאם לאישור סופי של נוסח התואר.</p>
+    </div>
+
+    <!-- Hero Visual: Financial dashboard -->
+    <div class="lg:col-span-5 relative">
+      <div class="reveal reveal-delay-2 relative">
+        <!-- Main card -->
+        <div class="relative bg-white rounded-3xl shadow-card hairline p-5 sm:p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-xs text-gray-500">לוח פיננסי · דוגמה להמחשה</div>
+              <div class="font-display font-bold text-ink-900 mt-1">תמונה חודשית — נובמבר</div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              סטטוס: מסודר
+            </span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 mt-5">
+            <div class="rounded-xl bg-cream hairline p-3">
+              <div class="text-[11px] text-gray-500">הכנסות</div>
+              <div class="num font-bold text-ink-900 mt-1" data-count="48200" data-prefix="₪">₪0</div>
+              <div class="text-[11px] text-emerald-600 mt-0.5">▲ 12%</div>
+            </div>
+            <div class="rounded-xl bg-cream hairline p-3">
+              <div class="text-[11px] text-gray-500">הוצאות</div>
+              <div class="num font-bold text-ink-900 mt-1" data-count="21400" data-prefix="₪">₪0</div>
+              <div class="text-[11px] text-gray-500 mt-0.5">— יציב</div>
+            </div>
+            <div class="rounded-xl bg-cream hairline p-3">
+              <div class="text-[11px] text-gray-500">תזרים</div>
+              <div class="num font-bold text-ink-900 mt-1" data-count="26800" data-prefix="₪">₪0</div>
+              <div class="text-[11px] text-emerald-600 mt-0.5">▲ 8%</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="mt-5 rounded-xl bg-cream hairline p-3">
+            <div class="flex items-center justify-between">
+              <div class="text-xs text-gray-500">תזרים מזומנים · 6 חודשים</div>
+              <div class="text-[11px] text-gray-400">דוגמה</div>
+            </div>
+            <svg viewBox="0 0 320 90" class="w-full h-20 mt-1" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#10B981" stop-opacity=".25"/>
+                  <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,70 L40,60 L80,55 L120,45 L160,50 L200,35 L240,30 L280,22 L320,18 L320,90 L0,90 Z" fill="url(#g1)"/>
+              <path id="chartLine" class="chart-line" d="M0,70 L40,60 L80,55 L120,45 L160,50 L200,35 L240,30 L280,22 L320,18"
+                fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <!-- Tasks -->
+          <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+            <div class="flex items-center gap-2 rounded-lg bg-cream hairline px-3 py-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              דיווח מע״מ הוגש
+            </div>
+            <div class="flex items-center gap-2 rounded-lg bg-cream hairline px-3 py-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              מקדמות מס הכנסה
+            </div>
+            <div class="flex items-center gap-2 rounded-lg bg-white hairline px-3 py-2 text-gray-500">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D6A84F" stroke-width="2"/></svg>
+              דוח שנתי · בהכנה
+            </div>
+            <div class="flex items-center gap-2 rounded-lg bg-white hairline px-3 py-2 text-gray-500">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D6A84F" stroke-width="2"/></svg>
+              התאמת ניכויים
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating mini cards -->
+        <div class="floaty absolute -bottom-6 -start-6 hidden sm:block bg-white rounded-2xl shadow-lift hairline p-3 w-48">
+          <div class="text-[11px] text-gray-500">תאריך דיווח קרוב</div>
+          <div class="font-semibold text-ink-900 mt-0.5">15 בחודש · מע״מ</div>
+          <div class="mt-2 h-1.5 rounded-full bg-cream overflow-hidden">
+            <div class="h-full w-3/4 bg-emerald-500 rounded-full"></div>
+          </div>
+        </div>
+        <div class="floaty delay slow absolute -top-6 -end-4 hidden sm:flex items-center gap-2 bg-white rounded-2xl shadow-lift hairline p-3">
+          <span class="w-9 h-9 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v12H4z" stroke="currentColor" stroke-width="1.7"/><path d="M4 11h16" stroke="currentColor" stroke-width="1.7"/></svg>
+          </span>
+          <div class="text-xs">
+            <div class="font-semibold text-ink-900">חשבוניות הוצאו</div>
+            <div class="num text-gray-500"><span data-count="34">0</span> החודש</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Problem ====== -->
+<section id="audience" class="relative py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <div class="reveal text-sm text-emerald-600 font-semibold">למה בכלל ליווי חשבונאי מסודר?</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        כשאין סדר במספרים — קשה לדעת איפה העסק באמת עומד
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        דוחות, תשלומים, קבלות, מקדמות ותזרים מזומנים יכולים להפוך מהר מאוד לעומס. ליווי חשבונאי נכון עוזר להפוך את כל המידע הזה לתמונה ברורה שאפשר לפעול לפיה.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+      <!-- card -->
+      <div class="reveal bg-white rounded-2xl hairline p-6">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v10M12 17v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-4">לא ברור כמה באמת מרוויחים</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">דוחות נראים טוב, אבל הבנק במינוס? צריך להבין את התמונה המלאה.</p>
+      </div>
+      <div class="reveal reveal-delay-1 bg-white rounded-2xl hairline p-6">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.7"/><path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-4">פחד מטעויות מול הרשויות</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">דיווחים, מקדמות, תשלומים ותאריכים — הכול צריך להיות מסודר בזמן.</p>
+      </div>
+      <div class="reveal reveal-delay-2 bg-white rounded-2xl hairline p-6">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-4">אין תכנון, רק כיבוי שריפות</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">במקום לחכות לסוף השנה, אפשר לקבל תמונה ברורה לאורך הדרך.</p>
+      </div>
+      <div class="reveal reveal-delay-3 bg-white rounded-2xl hairline p-6">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-gold-500 grid place-items-center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.7"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-4">העסק גדל, הניהול נשאר מאחור</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">ככל שיש יותר פעילות, צריך יותר סדר, בקרה וליווי מקצועי.</p>
+      </div>
+    </div>
+
+    <!-- Before / After -->
+    <div class="mt-14 grid md:grid-cols-2 gap-5">
+      <div class="reveal rounded-3xl p-6 sm:p-8 bg-gradient-to-bl from-white to-cream hairline">
+        <div class="flex items-center justify-between">
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-500">לפני</div>
+          <span class="text-xs text-gold-500 font-semibold">חוסר סדר</span>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-2 text-xl">קבלות, דוחות ותשלומים מפוזרים</h3>
+        <div class="mt-5 grid grid-cols-3 gap-2">
+          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-3 grid place-items-center text-[10px] text-gray-400">קבלה</div>
+          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-2 grid place-items-center text-[10px] text-gray-400">חשבונית</div>
+          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-1 grid place-items-center text-[10px] text-gray-400">דוח</div>
+          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-3 grid place-items-center text-[10px] text-gray-400">מע״מ</div>
+          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-2 grid place-items-center text-[10px] text-gray-400">מקדמה</div>
+          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-1 grid place-items-center text-[10px] text-gray-400">קבלה</div>
+        </div>
+        <p class="text-gray-600 text-sm mt-5">תחושת עומס, חוסר ודאות והחלטות שמתקבלות באוויר.</p>
+      </div>
+
+      <div class="reveal reveal-delay-1 rounded-3xl p-6 sm:p-8 bg-ink-900 text-cream relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between">
+            <div class="text-xs font-semibold uppercase tracking-wider text-cream/60">אחרי</div>
+            <span class="text-xs text-emerald-400 font-semibold inline-flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> סדר פיננסי
+            </span>
+          </div>
+          <h3 class="font-display font-bold mt-2 text-xl">תמונה ברורה, תאריכים מסודרים והחלטות בטוחות יותר</h3>
+
+          <div class="mt-5 grid grid-cols-3 gap-3">
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[10px] text-cream/60">הכנסות</div>
+              <div class="num font-bold mt-1">₪ 48.2K</div>
+            </div>
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[10px] text-cream/60">דיווחים</div>
+              <div class="num font-bold mt-1">בזמן</div>
+            </div>
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[10px] text-cream/60">משימות</div>
+              <div class="num font-bold mt-1">2/8</div>
+            </div>
+          </div>
+
+          <ul class="mt-5 space-y-2 text-sm text-cream/85">
+            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> דיווחים מוגשים בזמן</li>
+            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> תמונה ברורה של רווח, הוצאות ותזרים</li>
+            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> מענה מקצועי כשעולה שאלה</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Services ====== -->
+<section id="services" class="relative py-20 lg:py-28 bg-white border-y border-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <div class="reveal text-sm text-emerald-600 font-semibold">שירותים</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        שירותים חשבונאיים שמכסים את כל מה שהעסק צריך
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        ליווי מסודר משלב פתיחת התיק, דרך הדיווח השוטף ועד תכנון מס וקבלת החלטות פיננסיות.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
+      <!-- card template -->
+      <article class="reveal group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">הנהלת חשבונות</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">ניהול שוטף, סדר במסמכים, מעקב חודשי ודיווחים מסודרים מול הרשויות.</p>
+      </article>
+
+      <article class="reveal reveal-delay-1 group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 16h4M14 3v5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">דוחות שנתיים והצהרות הון</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">הכנה והגשה מקצועית בהתאם לדרישות הרשויות, עם בדיקות איכות לפני שליחה.</p>
+      </article>
+
+      <article class="reveal reveal-delay-2 group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 21v-6h6v6M9 13h.01M15 13h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">פתיחת תיק לעוסק או חברה</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">ליווי מהשלב הראשון — בחירת מבנה פעילות מתאים והתנהלות נכונה מהיום הראשון.</p>
+      </article>
+
+      <article class="reveal group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V10M19 21V10M3 10l9-6 9 6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">ייעוץ ותכנון מס</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">הסתכלות קדימה לקבלת החלטות חכמות וחוקיות, בהתאמה לאופי העסק.</p>
+      </article>
+
+      <article class="reveal reveal-delay-1 group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 7h7v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">ליווי פיננסי לעסקים</h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">הבנה של רווחיות, תזרים והוצאות — וזיהוי נקודות לשיפור לאורך השנה.</p>
+      </article>
+
+      <article class="reveal reveal-delay-2 group rounded-2xl hairline p-6 bg-cream/40 hover:bg-white hover:shadow-card hover:-translate-y-1 transition">
+        <!-- TODO: confirm whether payroll service is offered -->
+        <div class="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center group-hover:bg-emerald-600 group-hover:text-white transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="9" r="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M15 20c0-2 1.5-4 4-4" stroke="currentColor" stroke-width="1.7"/></svg>
+        </div>
+        <h3 class="font-display font-bold text-ink-900 mt-5 text-lg">שכר ודיני עבודה בסיסיים<sup class="text-gray-400 text-xs">*</sup></h3>
+        <p class="text-gray-600 text-sm mt-2 leading-relaxed">טיפול מסודר בתלושי שכר ודיווחים נלווים — בהתאם להיקף השירות המוצע.</p>
+      </article>
+    </div>
+    <p class="text-[11px] text-gray-400 mt-4">* רשימת השירותים תאושר סופית מול הלקוח לפני פרסום.</p>
+  </div>
+</section>
+
+<!-- ====== Process ====== -->
+<section id="process" class="relative py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <div class="reveal text-sm text-emerald-600 font-semibold">איך זה עובד</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        תהליך פשוט שמחזיר סדר לעסק
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        ארבעה שלבים ברורים — מהיכרות ראשונה ועד התנהלות שוטפת עם מענה מקצועי לאורך הדרך.
+      </p>
+    </div>
+
+    <div class="relative mt-14">
+      <!-- connecting line desktop -->
+      <div class="hidden lg:block absolute top-12 inset-x-0 h-px bg-gradient-to-l from-transparent via-emerald-500/40 to-transparent"></div>
+
+      <ol class="grid lg:grid-cols-4 gap-6">
+        <li class="reveal relative">
+          <div class="bg-white rounded-2xl hairline p-6 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-ink-900 text-cream grid place-items-center font-bold">1</span>
+              <span class="text-xs text-emerald-600 font-semibold">שלב ראשון</span>
+            </div>
+            <h3 class="font-display font-bold text-ink-900 mt-4">שיחת היכרות קצרה</h3>
+            <p class="text-gray-600 text-sm mt-2 leading-relaxed">מבינים את סוג העסק, הצרכים והמצב הנוכחי — ללא התחייבות.</p>
+          </div>
+        </li>
+        <li class="reveal reveal-delay-1 relative">
+          <div class="bg-white rounded-2xl hairline p-6 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-ink-900 text-cream grid place-items-center font-bold">2</span>
+              <span class="text-xs text-emerald-600 font-semibold">איסוף מידע</span>
+            </div>
+            <h3 class="font-display font-bold text-ink-900 mt-4">איסוף מסמכים ותמונה פיננסית</h3>
+            <p class="text-gray-600 text-sm mt-2 leading-relaxed">מרכזים את המידע החשוב בצורה פשוטה וברורה.</p>
+          </div>
+        </li>
+        <li class="reveal reveal-delay-2 relative">
+          <div class="bg-white rounded-2xl hairline p-6 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-ink-900 text-cream grid place-items-center font-bold">3</span>
+              <span class="text-xs text-emerald-600 font-semibold">בניית סדר</span>
+            </div>
+            <h3 class="font-display font-bold text-ink-900 mt-4">בניית סדר עבודה קבוע</h3>
+            <p class="text-gray-600 text-sm mt-2 leading-relaxed">מגדירים מה מגישים, מתי, ואיך מתנהלים שוטף.</p>
+          </div>
+        </li>
+        <li class="reveal reveal-delay-3 relative">
+          <div class="bg-white rounded-2xl hairline p-6 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-emerald-600 text-white grid place-items-center font-bold">4</span>
+              <span class="text-xs text-emerald-600 font-semibold">שוטף</span>
+            </div>
+            <h3 class="font-display font-bold text-ink-900 mt-4">ליווי, בקרה ושקט קדימה</h3>
+            <p class="text-gray-600 text-sm mt-2 leading-relaxed">העסק מקבל מענה מקצועי לאורך הדרך, עם בקרה ושיפור מתמיד.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Why Tamer ====== -->
+<section class="relative py-20 lg:py-28 bg-white border-y border-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-6">
+      <div class="reveal text-sm text-emerald-600 font-semibold">למה לעבוד עם תאמר</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        לא רק דוחות — ליווי שמסביר לך מה קורה בעסק
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        הערך הוא לא רק בהגשת הדוחות אלא בהבנה שלהם — מה דורש טיפול, ואיך לקבל החלטות פיננסיות בצורה רגועה ומבוססת יותר.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4 mt-8">
+        <div class="reveal rounded-2xl hairline p-5 bg-cream/40">
+          <div class="text-emerald-600 font-semibold text-sm">שפה ברורה</div>
+          <p class="text-gray-700 text-sm mt-1">בלי לסבך. הסברים בגובה העיניים על כל החלטה פיננסית.</p>
+        </div>
+        <div class="reveal reveal-delay-1 rounded-2xl hairline p-5 bg-cream/40">
+          <div class="text-emerald-600 font-semibold text-sm">דיוק מקצועי</div>
+          <p class="text-gray-700 text-sm mt-1">עבודה מסודרת מול מס הכנסה, מע״מ וביטוח לאומי.</p>
+        </div>
+        <div class="reveal reveal-delay-2 rounded-2xl hairline p-5 bg-cream/40">
+          <div class="text-emerald-600 font-semibold text-sm">חשיבה עסקית</div>
+          <p class="text-gray-700 text-sm mt-1">לא רק מה להגיש — אלא מה המספרים אומרים על העסק.</p>
+        </div>
+        <div class="reveal reveal-delay-3 rounded-2xl hairline p-5 bg-cream/40">
+          <div class="text-emerald-600 font-semibold text-sm">זמינות ואחריות</div>
+          <p class="text-gray-700 text-sm mt-1">מענה אישי, מסודר ומקצועי — לאורך כל הדרך.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abstract premium card / signature -->
+    <div class="lg:col-span-6">
+      <div class="reveal relative rounded-3xl overflow-hidden p-8 sm:p-10 bg-ink-900 text-cream shadow-lift">
+        <div class="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true"></div>
+        <div class="absolute -bottom-24 -end-20 w-72 h-72 rounded-full bg-emerald-600/30 blur-3xl"></div>
+        <div class="absolute -top-24 -start-16 w-64 h-64 rounded-full bg-gold-500/15 blur-3xl"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 hairline">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16M9 6v14M15 6v14" stroke="#D6A84F" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <div class="text-xs text-cream/60">משרד רואי חשבון</div>
+              <div class="font-display font-bold text-xl">תאמר חמדאן</div>
+            </div>
+          </div>
+
+          <blockquote class="mt-8 font-display text-2xl leading-snug">
+            “המטרה היא לא רק להגיש מסמכים בזמן — אלא שתבין איפה העסק עומד, ואילו החלטות יקדמו אותו.”
+          </blockquote>
+
+          <div class="mt-8 grid grid-cols-3 gap-3">
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[11px] text-cream/60">תחומי טיפול</div>
+              <div class="font-semibold mt-1">חשבונאות · מס</div>
+            </div>
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[11px] text-cream/60">קהל יעד</div>
+              <div class="font-semibold mt-1">עצמאים וחברות</div>
+            </div>
+            <div class="rounded-xl bg-white/5 hairline p-3">
+              <div class="text-[11px] text-cream/60">סגנון עבודה</div>
+              <div class="font-semibold mt-1">אישי וברור</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Financial Clarity ====== -->
+<section class="relative py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-5">
+      <div class="reveal text-sm text-emerald-600 font-semibold">בהירות פיננסית</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        במקום לנחש — רואים את התמונה הפיננסית
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        המטרה היא לא רק להגיש מסמכים בזמן. המטרה היא שתבין איפה העסק עומד, מה דורש טיפול, ואילו החלטות יכולות לשפר את ההתנהלות קדימה.
+      </p>
+      <ul class="mt-6 space-y-3 text-gray-700">
+        <li class="flex gap-3"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-500"></span> תמונה חודשית של הכנסות, הוצאות ותזרים</li>
+        <li class="flex gap-3"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-500"></span> תאריכי דיווח ומשימות שמסודרים מראש</li>
+        <li class="flex gap-3"><span class="mt-1 w-1.5 h-1.5 rounded-full bg-emerald-500"></span> שיחות עבודה שמתמקדות במה שחשוב</li>
+      </ul>
+    </div>
+
+    <div class="lg:col-span-7">
+      <div class="reveal relative bg-white rounded-3xl hairline shadow-card p-5 sm:p-7">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-xs text-gray-500">תמונה רבעונית · דוגמה להמחשה בלבד</div>
+            <div class="font-display font-bold text-ink-900 mt-1">סקירת רבעון</div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-600 font-semibold">Q3</span>
+            <span class="px-2 py-1 rounded-full bg-cream text-gray-500">דמו</span>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-4 gap-3 mt-5">
+          <div class="rounded-xl bg-cream hairline p-4">
+            <div class="text-[11px] text-gray-500">הכנסות</div>
+            <div class="num font-bold text-ink-900 mt-1 text-lg" data-count="142000" data-prefix="₪">₪0</div>
+          </div>
+          <div class="rounded-xl bg-cream hairline p-4">
+            <div class="text-[11px] text-gray-500">הוצאות</div>
+            <div class="num font-bold text-ink-900 mt-1 text-lg" data-count="61500" data-prefix="₪">₪0</div>
+          </div>
+          <div class="rounded-xl bg-cream hairline p-4">
+            <div class="text-[11px] text-gray-500">תזרים</div>
+            <div class="num font-bold text-emerald-600 mt-1 text-lg" data-count="80500" data-prefix="₪">₪0</div>
+          </div>
+          <div class="rounded-xl bg-cream hairline p-4">
+            <div class="text-[11px] text-gray-500">דוחות פתוחים</div>
+            <div class="num font-bold text-ink-900 mt-1 text-lg"><span data-count="3">0</span></div>
+          </div>
+        </div>
+
+        <!-- Bars + line -->
+        <div class="grid md:grid-cols-2 gap-4 mt-5">
+          <div class="rounded-2xl bg-cream hairline p-4">
+            <div class="text-xs text-gray-500">הכנסות לפי חודש</div>
+            <div class="mt-3 flex items-end gap-2 h-32">
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-emerald-600/80 rounded-md" style="height:55%"></div><span class="text-[10px] text-gray-400 mt-1">7</span></div>
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-emerald-600/80 rounded-md" style="height:70%"></div><span class="text-[10px] text-gray-400 mt-1">8</span></div>
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-emerald-600 rounded-md" style="height:90%"></div><span class="text-[10px] text-gray-400 mt-1">9</span></div>
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-emerald-600/60 rounded-md" style="height:48%"></div><span class="text-[10px] text-gray-400 mt-1">10</span></div>
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-emerald-600/80 rounded-md" style="height:65%"></div><span class="text-[10px] text-gray-400 mt-1">11</span></div>
+              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-gold-500 rounded-md" style="height:80%"></div><span class="text-[10px] text-gray-400 mt-1">12</span></div>
+            </div>
+          </div>
+          <div class="rounded-2xl bg-cream hairline p-4">
+            <div class="text-xs text-gray-500">משימות החודש</div>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> דיווח מע״מ</span><span class="text-[11px] text-emerald-600">הושלם</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0F766E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> מקדמות מס הכנסה</span><span class="text-[11px] text-emerald-600">הושלם</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D6A84F" stroke-width="2"/></svg> התאמת בנקים</span><span class="text-[11px] text-gold-500">בתהליך</span></li>
+              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#D6A84F" stroke-width="2"/></svg> טיוטת דוח שנתי</span><span class="text-[11px] text-gold-500">בהכנה</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-[11px] text-gray-400 mt-3">הנתונים בלוח להמחשה ויזואלית בלבד.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA Band ====== -->
+<section class="relative py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal relative overflow-hidden rounded-3xl bg-ink-900 text-cream p-8 sm:p-12">
+      <div class="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true"></div>
+      <div class="absolute -top-24 -end-24 w-80 h-80 rounded-full bg-emerald-600/20 blur-3xl"></div>
+      <div class="absolute -bottom-24 -start-24 w-80 h-80 rounded-full bg-gold-500/15 blur-3xl"></div>
+      <div class="relative grid lg:grid-cols-3 gap-6 items-center">
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight">רוצים להכניס סדר במספרים של העסק?</h3>
+          <p class="mt-2 text-cream/80">השאירו פרטים או שלחו הודעה, ונבדוק יחד מה נכון לשלב הבא.</p>
+        </div>
+        <div class="flex flex-wrap gap-3 lg:justify-end">
+          <a href="#contact" class="btn btn-gold">קביעת שיחת ייעוץ</a>
+          <a href="https://wa.me/972000000000" target="_blank" rel="noopener" class="btn !bg-white/10 !text-cream hover:!bg-white/15 px-5 py-3.5 rounded-xl">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5Z" stroke="#34D399" stroke-width="1.6"/></svg>
+            שליחת הודעה בוואטסאפ
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section id="faq" class="relative py-20 lg:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-sm text-emerald-600 font-semibold text-center">שאלות נפוצות</div>
+    <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight text-center">
+      מה בדרך כלל שואלים לפני שמתחילים
+    </h2>
+
+    <div class="mt-10 space-y-3">
+      <details class="reveal group bg-white rounded-2xl hairline open:shadow-card">
+        <summary class="flex items-center justify-between gap-4 p-5">
+          <span class="font-semibold text-ink-900">למי השירות מתאים?</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">לעצמאים, עוסקים פטורים ומורשים, חברות קטנות ובינוניות ובעלי עסקים שצריכים ליווי חשבונאי ופיננסי מסודר.</div>
+      </details>
+
+      <details class="reveal reveal-delay-1 group bg-white rounded-2xl hairline open:shadow-card">
+        <summary class="flex items-center justify-between gap-4 p-5">
+          <span class="font-semibold text-ink-900">האם אפשר לקבל ייעוץ לפני שמתחילים?</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">כן. ניתן לקבוע שיחה ראשונית כדי להבין את הצורך ולהחליט על דרך העבודה המתאימה.</div>
+      </details>
+
+      <details class="reveal reveal-delay-2 group bg-white rounded-2xl hairline open:shadow-card">
+        <summary class="flex items-center justify-between gap-4 p-5">
+          <span class="font-semibold text-ink-900">האם אתם מטפלים בדוחות שנתיים והצהרות הון?</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">כן. ניסוח השירותים יאושר סופית מול הלקוח לפני פרסום, אך זהו אחד מתחומי הליבה של המשרד.</div>
+      </details>
+
+      <details class="reveal reveal-delay-3 group bg-white rounded-2xl hairline open:shadow-card">
+        <summary class="flex items-center justify-between gap-4 p-5">
+          <span class="font-semibold text-ink-900">האם השירות מתאים לעסק בתחילת הדרך?</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">כן. דווקא בתחילת הדרך חשוב לפתוח תיק נכון, להבין חובות דיווח, ולבנות התנהלות מסודרת.</div>
+      </details>
+
+      <details class="reveal reveal-delay-4 group bg-white rounded-2xl hairline open:shadow-card">
+        <summary class="flex items-center justify-between gap-4 p-5">
+          <span class="font-semibold text-ink-900">איך יוצרים קשר?</span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0B1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed">באמצעות WhatsApp, טופס יצירת קשר באתר או שיחה טלפונית. נחזור אליכם בהקדם לתיאום שיחת ייעוץ.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Contact ====== -->
+<section id="contact" class="relative py-20 lg:py-28 bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-5">
+      <div class="reveal text-sm text-emerald-600 font-semibold">יצירת קשר</div>
+      <h2 class="reveal reveal-delay-1 mt-2 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-900 leading-tight">
+        הגיע הזמן שהמספרים יהיו ברורים
+      </h2>
+      <p class="reveal reveal-delay-2 mt-4 text-gray-600 text-lg">
+        השאירו פרטים ונחזור אליכם לתיאום שיחת ייעוץ. אפשר גם להתחיל בהודעת וואטסאפ קצרה.
+      </p>
+
+      <div class="mt-8 space-y-3 text-sm">
+        <a href="tel:+972000000000" class="flex items-center gap-3 p-4 rounded-2xl hairline bg-cream/40 hover:bg-cream transition">
+          <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5c0 9 6 15 15 15l2-4-5-2-2 2c-3-1-5-3-6-6l2-2-2-5-4 2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <div class="text-gray-500 text-xs">טלפון</div>
+            <div class="font-semibold text-ink-900">000-000-0000 <span class="text-gray-400 text-[11px]">— לאישור</span></div>
+          </div>
+        </a>
+        <a href="https://wa.me/972000000000" target="_blank" rel="noopener" class="flex items-center gap-3 p-4 rounded-2xl hairline bg-cream/40 hover:bg-cream transition">
+          <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <div>
+            <div class="text-gray-500 text-xs">WhatsApp</div>
+            <div class="font-semibold text-ink-900">שליחת הודעה ישירה</div>
+          </div>
+        </a>
+        <a href="mailto:hello@example.com" class="flex items-center gap-3 p-4 rounded-2xl hairline bg-cream/40 hover:bg-cream transition">
+          <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 grid place-items-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </span>
+          <div>
+            <div class="text-gray-500 text-xs">דוא״ל</div>
+            <div class="font-semibold text-ink-900">hello@example.com <span class="text-gray-400 text-[11px]">— לאישור</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <form class="reveal lg:col-span-7 bg-cream/40 rounded-3xl hairline p-6 sm:p-8" onsubmit="event.preventDefault(); this.querySelector('[data-ok]').classList.remove('hidden');">
+      <div class="grid sm:grid-cols-2 gap-4">
+        <label class="block">
+          <span class="text-sm text-ink-900 font-medium">שם מלא</span>
+          <input required type="text" autocomplete="name" class="mt-1.5 w-full bg-white rounded-xl hairline px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600/30" placeholder="לדוגמה: דנה לוי" />
+        </label>
+        <label class="block">
+          <span class="text-sm text-ink-900 font-medium">טלפון</span>
+          <input required type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9\-\+\s]{7,}" class="mt-1.5 w-full bg-white rounded-xl hairline px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600/30" placeholder="050-0000000" />
+        </label>
+        <label class="block sm:col-span-2">
+          <span class="text-sm text-ink-900 font-medium">סוג השירות המבוקש</span>
+          <select class="mt-1.5 w-full bg-white rounded-xl hairline px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600/30">
+            <option value="">בחרו אפשרות</option>
+            <option>פתיחת תיק</option>
+            <option>הנהלת חשבונות</option>
+            <option>דוח שנתי</option>
+            <option>ייעוץ מס</option>
+            <option>ליווי עסקי</option>
+            <option>אחר</option>
+          </select>
+        </label>
+        <label class="block sm:col-span-2">
+          <span class="text-sm text-ink-900 font-medium">הודעה קצרה</span>
+          <textarea rows="4" class="mt-1.5 w-full bg-white rounded-xl hairline px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600/30" placeholder="ספרו בקצרה על העסק והצורך"></textarea>
+        </label>
+      </div>
+
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        <button type="submit" class="btn btn-primary">
+          שליחה
+          <svg class="rtl-flip" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <a href="https://wa.me/972000000000" target="_blank" rel="noopener" class="btn btn-ghost">או שלחו הודעה בוואטסאפ</a>
+        <span class="text-xs text-gray-500">בלחיצה על שליחה הנכם מאשרים שניצור איתכם קשר.</span>
+      </div>
+
+      <div data-ok class="hidden mt-5 rounded-xl bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">
+        תודה! קיבלנו את הפנייה ונחזור אליכם בהקדם.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="bg-ink-900 text-cream/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/10">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M9 6v14M15 6v14" stroke="#D6A84F" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <span class="font-display font-bold text-cream">תאמר חמדאן | רואה חשבון</span>
+      </div>
+      <p class="text-sm mt-4 max-w-md text-cream/70">
+        שירותי ראיית חשבון, מיסוי וליווי פיננסי לעצמאים, חברות ובעלי עסקים. גישה מקצועית, ברורה ואישית.
+      </p>
+      <p class="text-xs text-cream/50 mt-4">
+        המידע באתר הוא כללי ואינו מהווה ייעוץ מס פרטני. לקבלת ייעוץ מותאם יש לפנות לרואה החשבון.
+      </p>
+    </div>
+
+    <div>
+      <div class="text-sm font-semibold text-cream mb-3">קישורים</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#services" class="hover:text-emerald-400">שירותים</a></li>
+        <li><a href="#process" class="hover:text-emerald-400">איך זה עובד</a></li>
+        <li><a href="#faq" class="hover:text-emerald-400">שאלות נפוצות</a></li>
+        <li><a href="#contact" class="hover:text-emerald-400">יצירת קשר</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="text-sm font-semibold text-cream mb-3">צרו קשר</div>
+      <ul class="space-y-2 text-sm">
+        <li><a href="tel:+972000000000" class="hover:text-emerald-400">טלפון <span class="text-cream/50">— לאישור</span></a></li>
+        <li><a href="https://wa.me/972000000000" target="_blank" rel="noopener" class="hover:text-emerald-400">WhatsApp</a></li>
+        <li><a href="mailto:hello@example.com" class="hover:text-emerald-400">דוא״ל</a></li>
+        <!-- TODO: confirm Instagram handle -->
+        <li><a href="https://instagram.com/" target="_blank" rel="noopener" class="hover:text-emerald-400">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-cream/50">
+      <div>© <span id="yr"></span> תאמר חמדאן · כל הזכויות שמורות</div>
+      <div>אזור שירות: ישראל <span class="text-cream/40">— לאישור</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky WhatsApp -->
+<a href="https://wa.me/972000000000" target="_blank" rel="noopener" aria-label="שלחו הודעה בוואטסאפ"
+   class="fixed bottom-5 start-5 z-40 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-emerald-600 text-white shadow-glow hover:bg-emerald-500 transition">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5Z" stroke="#fff" stroke-width="1.6"/></svg>
+  <span class="hidden sm:inline text-sm font-semibold">וואטסאפ</span>
+</a>
+
+</main>
+
+<!-- ====== JSON-LD ====== -->
+<!-- TODO: fill verified data before publishing -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "תאמר חמדאן | רואה חשבון",
+  "description": "שירותי ראיית חשבון, הנהלת חשבונות, דוחות שנתיים, ייעוץ מס וליווי פיננסי לעצמאים וחברות.",
+  "areaServed": "IL",
+  "inLanguage": "he"
+}
+</script>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Sticky header bg
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => {
+    if (window.scrollY > 8) hdr.classList.add('shadow-card'); else hdr.classList.remove('shadow-card');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const menu = document.getElementById('menu');
+  menuBtn?.addEventListener('click', () => {
+    const open = menu.classList.contains('menu-open');
+    menu.classList.toggle('menu-open', !open);
+    menu.classList.toggle('menu-closed', open);
+  });
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('menu-open'); menu.classList.add('menu-closed');
+  }));
+
+  // Reveal on scroll
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        // animations on entering
+        if (e.target.matches('#chartLine, .chart-line')) e.target.classList.add('in');
+        e.target.querySelectorAll?.('.chart-line, .bar').forEach(el => el.classList.add('in'));
+        // counters
+        e.target.querySelectorAll?.('[data-count]').forEach(animateCount);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Also observe chart container directly
+  document.querySelectorAll('#chartLine, .bar, [data-count]').forEach(el => io.observe(el));
+
+  function animateCount(el) {
+    if (el.dataset.done) return; el.dataset.done = '1';
+    const target = parseFloat(el.dataset.count || '0');
+    const prefix = el.dataset.prefix || '';
+    if (reduce) { el.textContent = prefix + formatNum(target); return; }
+    const dur = 1400; const start = performance.now();
+    function step(t) {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + formatNum(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function formatNum(n) {
+    if (n >= 1000) return n.toLocaleString('he-IL');
+    return String(n);
+  }
+</script>
+</body>
+</html>
