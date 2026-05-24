@@ -145,35 +145,52 @@ tailwind.config = {
     filter: drop-shadow(0 2px 10px rgba(201,162,79,.35));
   }
 
-  .photo-frame {
+  /* Portrait card — premium "executive frame" treatment */
+  .portrait-card {
     position: relative;
-    border-radius: 22px;
+    background: linear-gradient(180deg, #FDFBF6 0%, #F4EDDD 100%);
+    border-radius: 26px;
+    padding: 14px 14px 16px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.9) inset,
+      0 0 0 1px rgba(201,162,79,.28),
+      0 28px 60px -28px rgba(10,24,52,.28),
+      0 8px 20px -16px rgba(10,24,52,.18);
+  }
+  .portrait-img {
+    position: relative;
+    border-radius: 18px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
-    background: linear-gradient(180deg, #1B2C5C 0%, #0A1834 100%);
-    box-shadow: 0 30px 60px -28px rgba(10,24,52,.45), inset 0 0 0 1px rgba(201,162,79,.45);
+    background: #E8E0CC;
   }
-  .photo-frame img {
+  .portrait-img > img {
     width:100%; height:100%;
     object-fit: cover;
     object-position: center 18%;
-    filter: saturate(1.02) contrast(1.02);
+    filter: saturate(1.04) contrast(1.04);
+    display:block;
   }
-  .photo-tag {
-    position:absolute; inset-inline-start: 16px; bottom: 16px;
-    background: rgba(10,24,52,.78);
-    color:#F4E6C2;
-    padding: 10px 14px;
+  /* Soft vignette: fades the photo edges into the cream card so the blue backdrop blends in */
+  .portrait-img::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 95% 80% at 50% 38%, transparent 55%, rgba(244,237,221,.55) 88%, rgba(244,237,221,.95) 100%);
+    border-radius: inherit;
+  }
+  /* Inner gold hairline frame */
+  .portrait-img::before{
+    content:""; position:absolute; inset:8px; pointer-events:none;
+    border: 1px solid rgba(201,162,79,.32);
     border-radius: 12px;
-    backdrop-filter: blur(6px);
-    box-shadow: inset 0 0 0 1px rgba(240,216,154,.35);
-    font-size: 13px;
+    z-index: 2;
   }
-  .photo-frame::after{
-    content:""; position:absolute; inset: 8px;
-    border:1px solid rgba(240,216,154,.18);
-    border-radius: 14px; pointer-events:none;
-  }
+  /* Tiny gold corner accents inside the inner frame */
+  .corner-accent { position:absolute; width:14px; height:14px; border:1px solid #C9A24F; z-index:3; pointer-events:none; }
+  .corner-accent.tl { top:14px; inset-inline-start:14px; border-bottom:0; border-inline-end:0; }
+  .corner-accent.tr { top:14px; inset-inline-end:14px; border-bottom:0; border-inline-start:0; }
+  .corner-accent.bl { bottom:14px; inset-inline-start:14px; border-top:0; border-inline-end:0; }
+  .corner-accent.br { bottom:14px; inset-inline-end:14px; border-top:0; border-inline-start:0; }
 
   .svc-card { transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease; }
   .svc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px -18px rgba(10,24,52,.18); }
@@ -320,25 +337,26 @@ tailwind.config = {
 
     <!-- Photo -->
     <div class="lg:col-span-5 order-1 lg:order-2 relative">
-      <div class="reveal relative max-w-[320px] sm:max-w-[400px] lg:max-w-[440px] mx-auto">
-        <!-- Decorative depth shapes (behind photo) -->
-        <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-[26px] bg-ink-900/90 -z-10 hidden sm:block" aria-hidden="true"></div>
-        <div class="absolute -top-4 -start-4 w-28 h-28 rounded-full bg-gold-100/70 -z-10 hidden sm:block" aria-hidden="true"></div>
-        <div class="absolute -bottom-6 -end-6 w-32 h-32 rounded-full bg-gold-200/30 blur-2xl -z-10 hidden lg:block" aria-hidden="true"></div>
-
-        <div class="photo-frame">
+      <figure class="reveal portrait-card relative max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] mx-auto">
+        <div class="portrait-img">
           <img src="images/tamer.jpg" alt="תאמר חמדאן — רואה חשבון, מייסד משרד G.T. CPAs Office" loading="eager" fetchpriority="high" />
-          <div class="photo-tag">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-gold-400"></span>
-              <div>
-                <div class="text-gold-100 text-[11px] font-semibold tracking-wider">FOUNDER · רואה חשבון</div>
-                <div class="display text-white text-base leading-tight">תאמר חמדאן</div>
-              </div>
-            </div>
-          </div>
+          <span class="corner-accent tl" aria-hidden="true"></span>
+          <span class="corner-accent tr" aria-hidden="true"></span>
+          <span class="corner-accent bl" aria-hidden="true"></span>
+          <span class="corner-accent br" aria-hidden="true"></span>
         </div>
-      </div>
+
+        <!-- Caption bar -->
+        <figcaption class="flex items-center justify-between gap-3 mt-4 px-1">
+          <div class="leading-tight min-w-0">
+            <div class="text-[10px] text-gold-700 font-semibold tracking-[0.2em]">FOUNDER · רואה חשבון</div>
+            <div class="display text-ink-900 text-lg font-bold mt-0.5 truncate">תאמר חמדאן</div>
+          </div>
+          <span class="logo-mark h-10 sm:h-12 shrink-0 opacity-90">
+            <img src="images/logo.png" alt="G.T. CPAs Office" onerror="this.onerror=null;this.src='images/logo.jpg'" />
+          </span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
