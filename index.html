@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>תאמר חמדאן | רואה חשבון וליווי פיננסי לעסקים — G.T. CPAs Office</title>
-<meta name="description" content="משרד רואי חשבון G.T. CPAs Office בראשות תאמר חמדאן — שירותי ראיית חשבון, הנהלת חשבונות, דוחות שנתיים, ייעוץ מס וליווי פיננסי לעסקים." />
+<meta name="description" content="משרד רואי חשבון G.T. CPAs Office בהובלת תאמר חמדאן — שירותי ראיית חשבון, הנהלת חשבונות, דוחות שנתיים, ייעוץ מס, החזרי מס ומשיכות פיננסיות לעסקים." />
 <meta name="theme-color" content="#0A1834" />
 <link rel="icon" type="image/png" href="images/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -134,6 +134,15 @@ tailwind.config = {
   .menu-open { transform: translateY(0); opacity:1; pointer-events:auto; }
   .menu-closed { transform: translateY(-8px); opacity:0; pointer-events:none; }
 
+  /* Tab views — show one section at a time */
+  .view { display: none; }
+  .view.active { display: block; animation: viewFade .35s ease-out; }
+  @keyframes viewFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  /* Active nav link styling */
+  .tab-link.active { color: #8C6A1F; }
+  .tab-link.active::after { content:""; display:block; height:2px; width:24px; background:#C9A24F; border-radius:2px; margin-top:4px; }
+  .mob-tab-link.active { background: #F4EDDD; color:#8C6A1F; }
+
   /* Logo mark — true icon treatment. PNG is transparent gold-on-nothing. */
   .logo-mark { display:inline-flex; align-items:center; justify-content:center; line-height: 0; }
   .logo-mark img {
@@ -213,7 +222,7 @@ tailwind.config = {
 <header id="hdr" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
   <div class="nav-blur bg-cream/85 border-b border-line/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-3">
-      <a href="#top" class="flex items-center gap-4 min-w-0">
+      <a href="#home" data-tab="home" class="flex items-center gap-4 min-w-0">
         <span class="logo-mark on-light h-14 sm:h-16 lg:h-[68px] shrink-0">
           <img src="images/logo.png" alt="G.T. CPAs Office — לוגו המשרד" onerror="this.onerror=null;this.src='images/logo.jpg'" />
         </span>
@@ -224,15 +233,16 @@ tailwind.config = {
       </a>
 
       <nav class="hidden lg:flex items-center gap-7 text-sm text-ink-700">
-        <a href="#services" class="hover:text-gold-700 transition">שירותים</a>
-        <a href="#process" class="hover:text-gold-700 transition">איך זה עובד</a>
-        <a href="#why" class="hover:text-gold-700 transition">למה אנחנו</a>
-        <a href="#faq" class="hover:text-gold-700 transition">שאלות נפוצות</a>
-        <a href="#contact" class="hover:text-gold-700 transition">יצירת קשר</a>
+        <a href="#home" data-tab="home" class="tab-link hover:text-gold-700 transition">בית</a>
+        <a href="#services" data-tab="services" class="tab-link hover:text-gold-700 transition">שירותים</a>
+        <a href="#process" data-tab="process" class="tab-link hover:text-gold-700 transition">איך זה עובד</a>
+        <a href="#why" data-tab="why" class="tab-link hover:text-gold-700 transition">למה אנחנו</a>
+        <a href="#faq" data-tab="faq" class="tab-link hover:text-gold-700 transition">שאלות נפוצות</a>
+        <a href="#contact" data-tab="contact" class="tab-link hover:text-gold-700 transition">יצירת קשר</a>
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="#contact" class="hidden sm:inline-flex btn btn-primary !py-2.5 !px-4 text-sm">
+        <a href="#contact" data-tab="contact" class="hidden sm:inline-flex btn btn-primary !py-2.5 !px-4 text-sm">
           קביעת שיחת ייעוץ
           <svg class="rtl-flip" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -244,18 +254,22 @@ tailwind.config = {
 
     <div id="menu" class="lg:hidden menu-closed transition-all duration-200 origin-top bg-white border-t border-line">
       <div class="px-4 py-4 grid gap-1 text-sm">
-        <a href="#services" class="py-3 px-2 rounded-lg hover:bg-cream-100">שירותים</a>
-        <a href="#process" class="py-3 px-2 rounded-lg hover:bg-cream-100">איך זה עובד</a>
-        <a href="#why" class="py-3 px-2 rounded-lg hover:bg-cream-100">למה אנחנו</a>
-        <a href="#faq" class="py-3 px-2 rounded-lg hover:bg-cream-100">שאלות נפוצות</a>
-        <a href="#contact" class="py-3 px-2 rounded-lg hover:bg-cream-100">יצירת קשר</a>
-        <a href="#contact" class="btn btn-primary mt-2">קביעת שיחת ייעוץ</a>
+        <a href="#home" data-tab="home" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">בית</a>
+        <a href="#services" data-tab="services" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">שירותים</a>
+        <a href="#process" data-tab="process" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">איך זה עובד</a>
+        <a href="#why" data-tab="why" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">למה אנחנו</a>
+        <a href="#faq" data-tab="faq" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">שאלות נפוצות</a>
+        <a href="#contact" data-tab="contact" class="mob-tab-link py-3 px-3 rounded-lg hover:bg-cream-100">יצירת קשר</a>
+        <a href="#contact" data-tab="contact" class="btn btn-primary mt-2">קביעת שיחת ייעוץ</a>
       </div>
     </div>
   </div>
 </header>
 
 <main id="top" class="pt-20 sm:pt-24">
+
+<!-- ====== VIEW: HOME ====== -->
+<div class="view active" data-view="home">
 
 <!-- ====== Hero ====== -->
 <section class="relative overflow-hidden">
@@ -277,12 +291,12 @@ tailwind.config = {
       </h1>
 
       <p class="reveal reveal-delay-2 mt-6 text-lg text-ink-700/85 max-w-xl leading-relaxed">
-        משרד <span class="font-semibold text-ink-900">G.T. CPAs Office</span> בראשות רואה החשבון תאמר חמדאן —
-        ראיית חשבון, מיסוי, הנהלת חשבונות, דוחות וליווי פיננסי.
+        משרד <span class="font-semibold text-ink-900">G.T. CPAs Office</span> בהובלת רואה החשבון תאמר חמדאן —
+        ראיית חשבון, מיסוי, הנהלת חשבונות, דוחות, החזרי מס וליווי פיננסי.
       </p>
 
       <div class="reveal reveal-delay-3 mt-7 flex flex-wrap items-center gap-3">
-        <a href="#contact" class="btn btn-primary">
+        <a href="#contact" data-tab="contact" class="btn btn-primary">
           לקביעת שיחת ייעוץ
           <svg class="rtl-flip" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -351,10 +365,10 @@ tailwind.config = {
         </div>
 
         <!-- Caption bar -->
-        <figcaption class="flex items-center justify-between gap-3 mt-4 px-1">
+        <figcaption class="flex items-center justify-between gap-4 mt-5 px-1">
           <div class="leading-tight min-w-0">
-            <div class="text-[10px] text-gold-700 font-semibold tracking-[0.2em]">FOUNDER · רואה חשבון</div>
-            <div class="display text-ink-900 text-lg font-bold mt-0.5 truncate">תאמר חמדאן</div>
+            <div class="display text-ink-900 text-xl sm:text-2xl font-bold truncate">תאמר חמדאן</div>
+            <div class="text-sm sm:text-base text-gold-700 font-semibold mt-1">רואה חשבון · מייסד המשרד</div>
           </div>
           <span class="logo-mark on-light h-14 sm:h-16 shrink-0">
             <img src="images/logo.png" alt="G.T. CPAs Office" onerror="this.onerror=null;this.src='images/logo.jpg'" />
@@ -365,106 +379,10 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ====== Problem ====== -->
-<section id="audience" class="relative py-20 lg:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl">
-      <div class="reveal eyebrow">למה ליווי חשבונאי מסודר</div>
-      <h2 class="reveal reveal-delay-1 display mt-3 text-3xl sm:text-4xl text-ink-900 leading-tight">
-        כשאין סדר במספרים — קשה לדעת איפה העסק באמת עומד
-      </h2>
-      <p class="reveal reveal-delay-2 mt-4 text-ink-700/80 text-lg leading-relaxed">
-        דוחות, תשלומים, קבלות, מקדמות ותזרים מזומנים יכולים להפוך מהר מאוד לעומס.
-        ליווי חשבונאי נכון הופך את כל המידע הזה לתמונה ברורה שאפשר לפעול לפיה.
-      </p>
-    </div>
+</div><!-- /view-home -->
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-      <div class="reveal bg-white rounded-2xl hairline p-6 svc-card">
-        <div class="w-11 h-11 rounded-xl bg-cream text-gold-700 hairline-gold grid place-items-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v10M12 17v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
-        </div>
-        <h3 class="display text-ink-900 mt-4 text-lg">לא ברור כמה באמת מרוויחים</h3>
-        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">דוחות נראים טוב, אבל הבנק במינוס? צריך להבין את התמונה המלאה.</p>
-      </div>
-      <div class="reveal reveal-delay-1 bg-white rounded-2xl hairline p-6 svc-card">
-        <div class="w-11 h-11 rounded-xl bg-cream text-gold-700 hairline-gold grid place-items-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l4 4v14H6z" stroke="currentColor" stroke-width="1.7"/><path d="M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-        </div>
-        <h3 class="display text-ink-900 mt-4 text-lg">פחד מטעויות מול הרשויות</h3>
-        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">דיווחים, מקדמות, תשלומים ותאריכים — הכול צריך להיות מסודר בזמן.</p>
-      </div>
-      <div class="reveal reveal-delay-2 bg-white rounded-2xl hairline p-6 svc-card">
-        <div class="w-11 h-11 rounded-xl bg-cream text-gold-700 hairline-gold grid place-items-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <h3 class="display text-ink-900 mt-4 text-lg">אין תכנון, רק כיבוי שריפות</h3>
-        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">במקום לחכות לסוף השנה, אפשר לקבל תמונה ברורה לאורך הדרך.</p>
-      </div>
-      <div class="reveal reveal-delay-3 bg-white rounded-2xl hairline p-6 svc-card">
-        <div class="w-11 h-11 rounded-xl bg-cream text-gold-700 hairline-gold grid place-items-center">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-6 8 6v12" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="currentColor" stroke-width="1.7"/></svg>
-        </div>
-        <h3 class="display text-ink-900 mt-4 text-lg">העסק גדל, הניהול נשאר מאחור</h3>
-        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">ככל שיש יותר פעילות, צריך יותר סדר, בקרה ודיווח שוטף.</p>
-      </div>
-    </div>
-
-    <div class="mt-14 grid md:grid-cols-2 gap-5">
-      <div class="reveal rounded-3xl p-6 sm:p-8 bg-gradient-to-bl from-white to-cream hairline">
-        <div class="flex items-center justify-between">
-          <div class="eyebrow !text-ink-700/70">לפני</div>
-          <span class="text-xs text-gold-700 font-semibold">חוסר סדר</span>
-        </div>
-        <h3 class="display text-ink-900 mt-2 text-xl">קבלות, דוחות ותשלומים מפוזרים</h3>
-        <div class="mt-5 grid grid-cols-3 gap-2">
-          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-3 grid place-items-center text-[10px] text-ink-700/50">קבלה</div>
-          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-2 grid place-items-center text-[10px] text-ink-700/50">חשבונית</div>
-          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-1 grid place-items-center text-[10px] text-ink-700/50">דוח</div>
-          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-3 grid place-items-center text-[10px] text-ink-700/50">מע״מ</div>
-          <div class="aspect-[4/3] rounded-lg bg-white hairline -rotate-2 grid place-items-center text-[10px] text-ink-700/50">מקדמה</div>
-          <div class="aspect-[4/3] rounded-lg bg-white hairline rotate-1 grid place-items-center text-[10px] text-ink-700/50">קבלה</div>
-        </div>
-        <p class="text-ink-700/80 text-sm mt-5">תחושת עומס, חוסר ודאות והחלטות שמתקבלות באוויר.</p>
-      </div>
-
-      <div class="reveal reveal-delay-1 rounded-3xl p-6 sm:p-8 bg-ink-900 text-cream relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid-dark opacity-50" aria-hidden="true"></div>
-        <div class="absolute -bottom-20 -end-20 w-72 h-72 rounded-full bg-gold-600/15 blur-3xl"></div>
-        <div class="relative">
-          <div class="flex items-center justify-between">
-            <div class="eyebrow !text-gold-300">אחרי</div>
-            <span class="text-xs text-gold-400 font-semibold inline-flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span> סדר פיננסי
-            </span>
-          </div>
-          <h3 class="display mt-2 text-xl">תמונה ברורה, תאריכים מסודרים והחלטות בטוחות יותר</h3>
-
-          <div class="mt-5 grid grid-cols-3 gap-3">
-            <div class="rounded-xl bg-white/5 p-3 hairline-gold">
-              <div class="text-[10px] text-gold-300/80">הכנסות</div>
-              <div class="num font-bold mt-1">₪ 48.2K</div>
-            </div>
-            <div class="rounded-xl bg-white/5 p-3 hairline-gold">
-              <div class="text-[10px] text-gold-300/80">דיווחים</div>
-              <div class="num font-bold mt-1">בזמן</div>
-            </div>
-            <div class="rounded-xl bg-white/5 p-3 hairline-gold">
-              <div class="text-[10px] text-gold-300/80">משימות</div>
-              <div class="num font-bold mt-1">2/8</div>
-            </div>
-          </div>
-
-          <ul class="mt-5 space-y-2 text-sm text-cream/85">
-            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#E5C078" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> הגשת דיווחים במועדים הקבועים בחוק</li>
-            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#E5C078" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> תמונה חודשית של רווח, הוצאות ותזרים</li>
-            <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#E5C078" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> מענה לפניות לקוחות לאורך השנה</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ====== VIEW: SERVICES ====== -->
+<div class="view" data-view="services">
 
 <!-- ====== Services ====== -->
 <section id="services" class="relative py-20 lg:py-28 bg-white border-y border-line">
@@ -554,6 +472,22 @@ tailwind.config = {
         <h3 class="display text-ink-900 mt-5 text-xl">דיווח לרשויות</h3>
         <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">דיווחים שוטפים למס הכנסה, מע״מ וביטוח לאומי בהתאם למועדי הדיווח הקבועים בחוק.</p>
       </article>
+
+      <article class="reveal group rounded-2xl hairline p-6 bg-cream-50 svc-card">
+        <div class="w-12 h-12 rounded-xl bg-ink-900 text-gold-400 grid place-items-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M6 15l6 6 6-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="display text-ink-900 mt-5 text-xl">החזרי מס</h3>
+        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">בדיקה, הכנה והגשה של בקשות להחזרי מס לרשות המסים.</p>
+      </article>
+
+      <article class="reveal reveal-delay-1 group rounded-2xl hairline p-6 bg-cream-50 svc-card">
+        <div class="w-12 h-12 rounded-xl bg-ink-900 text-gold-400 grid place-items-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v10M9 10h6M9 14h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="display text-ink-900 mt-5 text-xl">משיכות פיננסיות</h3>
+        <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">טיפול וליווי בנושאי משיכות פיננסיות מהעסק.</p>
+      </article>
     </div>
     <p class="text-[11px] text-ink-700/50 mt-6 leading-relaxed">
       * רשימת השירותים הסופית והיקפם ייקבעו במסגרת הסכם השירות מול הלקוח.
@@ -561,6 +495,11 @@ tailwind.config = {
     </p>
   </div>
 </section>
+
+</div><!-- /view-services -->
+
+<!-- ====== VIEW: PROCESS ====== -->
+<div class="view" data-view="process">
 
 <!-- ====== Process ====== -->
 <section id="process" class="relative py-20 lg:py-28">
@@ -585,7 +524,7 @@ tailwind.config = {
               <span class="w-11 h-11 rounded-full bg-ink-900 text-gold-400 grid place-items-center display text-lg">1</span>
               <span class="text-[11px] text-gold-700 font-semibold tracking-widest">שלב ראשון</span>
             </div>
-            <h3 class="display text-ink-900 mt-4 text-lg">שיחת היכרות קצרה</h3>
+            <h3 class="display text-ink-900 mt-4 text-lg">שיחת היכרות</h3>
             <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">מבינים את סוג העסק, הצרכים והמצב הנוכחי — ללא התחייבות.</p>
           </div>
         </li>
@@ -606,7 +545,7 @@ tailwind.config = {
               <span class="text-[11px] text-gold-700 font-semibold tracking-widest">בניית סדר</span>
             </div>
             <h3 class="display text-ink-900 mt-4 text-lg">בניית סדר עבודה קבוע</h3>
-            <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">מגדירים מה מגישים, מתי, ואיך מתנהלים שוטף.</p>
+            <p class="text-ink-700/80 text-sm mt-2 leading-relaxed">בודקים חבויות מס משוערות, מגדירים מה מגישים, מתי ואיך מתנהלים בצורה שוטפת.</p>
           </div>
         </li>
         <li class="reveal reveal-delay-3">
@@ -617,7 +556,7 @@ tailwind.config = {
                 <span class="w-11 h-11 rounded-full bg-gold-600 text-ink-900 grid place-items-center display text-lg">4</span>
                 <span class="text-[11px] text-gold-300 font-semibold tracking-widest">שוטף</span>
               </div>
-              <h3 class="display mt-4 text-lg">ליווי, בקרה ושקט קדימה</h3>
+              <h3 class="display mt-4 text-lg">ליווי ובקרה</h3>
               <p class="text-cream/80 text-sm mt-2 leading-relaxed">ליווי שוטף, מעקב חודשי ודיווחים תקופתיים לאורך השנה.</p>
             </div>
           </div>
@@ -626,6 +565,11 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+</div><!-- /view-process -->
+
+<!-- ====== VIEW: WHY ====== -->
+<div class="view" data-view="why">
 
 <!-- ====== Work Approach ====== -->
 <section id="why" class="relative py-20 lg:py-28 bg-white border-y border-line">
@@ -642,7 +586,7 @@ tailwind.config = {
       <div class="grid sm:grid-cols-2 gap-4 mt-8">
         <div class="reveal rounded-2xl hairline p-5 bg-cream-50">
           <div class="flex items-center gap-2"><span class="dot"></span><span class="text-gold-700 font-semibold text-sm">תקשורת שוטפת</span></div>
-          <p class="text-ink-700/80 text-sm mt-1">מענה לפניות לקוחות והעברת מידע במהלך השנה.</p>
+          <p class="text-ink-700/80 text-sm mt-1">מענה לפניות הלקוחות, הכנת בקשות מיוחדות והעברת מסמכים לבקשת הלקוח.</p>
         </div>
         <div class="reveal reveal-delay-1 rounded-2xl hairline p-5 bg-cream-50">
           <div class="flex items-center gap-2"><span class="dot"></span><span class="text-gold-700 font-semibold text-sm">עמידה במועדי דיווח</span></div>
@@ -650,7 +594,7 @@ tailwind.config = {
         </div>
         <div class="reveal reveal-delay-2 rounded-2xl hairline p-5 bg-cream-50">
           <div class="flex items-center gap-2"><span class="dot"></span><span class="text-gold-700 font-semibold text-sm">סדר במסמכים</span></div>
-          <p class="text-ink-700/80 text-sm mt-1">תיעוד ושמירה של ספרי החשבונות והדיווחים בהתאם לדרישות החוק.</p>
+          <p class="text-ink-700/80 text-sm mt-1">הפקת חשבוניות, תיעוד ושמירת מסמכים באופן דיגיטלי ונוח ללקוח, בהתאם לדרישות החוק.</p>
         </div>
         <div class="reveal reveal-delay-3 rounded-2xl hairline p-5 bg-cream-50">
           <div class="flex items-center gap-2"><span class="dot"></span><span class="text-gold-700 font-semibold text-sm">היכרות עם פעילות העסק</span></div>
@@ -703,109 +647,10 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- ====== Financial Clarity ====== -->
-<section class="relative py-20 lg:py-28">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
-    <div class="lg:col-span-5">
-      <div class="reveal eyebrow">בהירות פיננסית</div>
-      <h2 class="reveal reveal-delay-1 display mt-3 text-3xl sm:text-4xl text-ink-900 leading-tight">
-        במקום לנחש — רואים את התמונה הפיננסית
-      </h2>
-      <p class="reveal reveal-delay-2 mt-4 text-ink-700/80 text-lg leading-relaxed">
-        המטרה היא לא רק להגיש מסמכים בזמן. המטרה היא שתבין איפה העסק עומד, מה דורש טיפול,
-        ואילו החלטות יכולות לשפר את ההתנהלות קדימה.
-      </p>
-      <ul class="mt-6 space-y-3 text-ink-700/85">
-        <li class="flex gap-3 items-start"><span class="mt-2 dot"></span> תמונה חודשית של הכנסות, הוצאות ותזרים</li>
-        <li class="flex gap-3 items-start"><span class="mt-2 dot"></span> תאריכי דיווח ומשימות שמסודרים מראש</li>
-        <li class="flex gap-3 items-start"><span class="mt-2 dot"></span> שיחות עבודה שמתמקדות במה שחשוב</li>
-      </ul>
-    </div>
+</div><!-- /view-why -->
 
-    <div class="lg:col-span-7">
-      <div class="reveal relative bg-white rounded-3xl hairline shadow-card p-5 sm:p-7">
-        <div class="flex items-center justify-between gap-3">
-          <div class="min-w-0">
-            <div class="text-xs text-ink-700/60">תמונה רבעונית · דוגמה להמחשה בלבד</div>
-            <div class="display text-ink-900 mt-1 text-lg">סקירת רבעון</div>
-          </div>
-          <div class="flex items-center gap-2 text-xs shrink-0">
-            <span class="px-2.5 py-1 rounded-full bg-ink-900 text-gold-400 font-semibold">Q3</span>
-            <span class="px-2.5 py-1 rounded-full bg-cream text-ink-700/70">דמו</span>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
-          <div class="rounded-xl bg-cream hairline p-4">
-            <div class="text-[11px] text-ink-700/60">הכנסות</div>
-            <div class="num font-bold text-ink-900 mt-1 text-lg" data-count="142000" data-prefix="₪">₪0</div>
-          </div>
-          <div class="rounded-xl bg-cream hairline p-4">
-            <div class="text-[11px] text-ink-700/60">הוצאות</div>
-            <div class="num font-bold text-ink-900 mt-1 text-lg" data-count="61500" data-prefix="₪">₪0</div>
-          </div>
-          <div class="rounded-xl bg-cream hairline p-4">
-            <div class="text-[11px] text-ink-700/60">תזרים</div>
-            <div class="num font-bold text-gold-700 mt-1 text-lg" data-count="80500" data-prefix="₪">₪0</div>
-          </div>
-          <div class="rounded-xl bg-cream hairline p-4">
-            <div class="text-[11px] text-ink-700/60">דוחות פתוחים</div>
-            <div class="num font-bold text-ink-900 mt-1 text-lg"><span data-count="3">0</span></div>
-          </div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4 mt-5">
-          <div class="rounded-2xl bg-cream hairline p-4">
-            <div class="text-xs text-ink-700/60">הכנסות לפי חודש</div>
-            <div class="mt-3 flex items-end gap-2 h-32">
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-ink-800/85 rounded-md" style="height:55%"></div><span class="text-[10px] text-ink-700/50 mt-1">7</span></div>
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-ink-800/85 rounded-md" style="height:70%"></div><span class="text-[10px] text-ink-700/50 mt-1">8</span></div>
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-ink-900 rounded-md" style="height:90%"></div><span class="text-[10px] text-ink-700/50 mt-1">9</span></div>
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-ink-800/60 rounded-md" style="height:48%"></div><span class="text-[10px] text-ink-700/50 mt-1">10</span></div>
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-ink-800/85 rounded-md" style="height:65%"></div><span class="text-[10px] text-ink-700/50 mt-1">11</span></div>
-              <div class="flex-1 flex flex-col items-center"><div class="bar w-full bg-gold-600 rounded-md" style="height:80%"></div><span class="text-[10px] text-ink-700/50 mt-1">12</span></div>
-            </div>
-          </div>
-          <div class="rounded-2xl bg-cream hairline p-4">
-            <div class="text-xs text-ink-700/60">משימות החודש</div>
-            <ul class="mt-3 space-y-2 text-sm">
-              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0A1834" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> דיווח מע״מ</span><span class="text-[11px] text-ink-900 font-semibold">הושלם</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#0A1834" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> מקדמות מס הכנסה</span><span class="text-[11px] text-ink-900 font-semibold">הושלם</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#C9A24F" stroke-width="2"/></svg> התאמת בנקים</span><span class="text-[11px] text-gold-700 font-semibold">בתהליך</span></li>
-              <li class="flex items-center justify-between"><span class="flex items-center gap-2"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#C9A24F" stroke-width="2"/></svg> טיוטת דוח שנתי</span><span class="text-[11px] text-gold-700 font-semibold">בהכנה</span></li>
-            </ul>
-          </div>
-        </div>
-        <p class="text-[11px] text-ink-700/50 mt-3">הנתונים בלוח להמחשה ויזואלית בלבד.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== CTA Band ====== -->
-<section class="relative py-12 sm:py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="reveal relative overflow-hidden rounded-3xl bg-ink-900 text-cream p-8 sm:p-12">
-      <div class="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true"></div>
-      <div class="absolute -top-24 -end-24 w-80 h-80 rounded-full bg-gold-600/25 blur-3xl"></div>
-      <div class="absolute -bottom-24 -start-24 w-80 h-80 rounded-full bg-gold-400/15 blur-3xl"></div>
-      <div class="relative grid lg:grid-cols-3 gap-6 items-center">
-        <div class="lg:col-span-2">
-          <div class="eyebrow !text-gold-300">G.T. CPAs OFFICE</div>
-          <h3 class="display mt-2 text-2xl sm:text-3xl">רוצים להכניס סדר במספרים של העסק?</h3>
-          <p class="mt-2 text-cream/80">השאירו פרטים או שלחו הודעה, ונבדוק יחד מה נכון לשלב הבא.</p>
-        </div>
-        <div class="flex flex-wrap gap-3 lg:justify-end">
-          <a href="#contact" class="btn btn-gold">קביעת שיחת ייעוץ</a>
-          <a href="https://wa.me/972509619393?text=%D7%94%D7%99%D7%99%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" class="btn btn-outline-gold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.8-1.6A11 11 0 1 0 20.5 3.5Z" stroke="#F4E6C2" stroke-width="1.6"/></svg>
-            שליחת הודעה בוואטסאפ
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ====== VIEW: FAQ ====== -->
+<div class="view" data-view="faq">
 
 <!-- ====== FAQ ====== -->
 <section id="faq" class="relative py-20 lg:py-28">
@@ -829,7 +674,7 @@ tailwind.config = {
           <span class="font-semibold text-ink-900">האם אפשר לקבל ייעוץ לפני שמתחילים?</span>
           <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0A1834" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
-        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן. ניתן לקבוע שיחה ראשונית כדי להבין את הצורך ולהחליט על דרך העבודה המתאימה.</div>
+        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן, ניתן לקבוע שיחה ראשונית על מנת להבין את הצורך העסקי, ולהחליט על אופן העבודה המתאים.</div>
       </details>
 
       <details class="reveal reveal-delay-2 group bg-white rounded-2xl hairline open:shadow-card">
@@ -837,7 +682,7 @@ tailwind.config = {
           <span class="font-semibold text-ink-900">האם אתם מטפלים בדוחות שנתיים והצהרות הון?</span>
           <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0A1834" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
-        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן, אלה מהשירותים שמטופלים במשרד.</div>
+        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן, אלה חלק מהשירותים שניתנים על ידי המשרד.</div>
       </details>
 
       <details class="reveal reveal-delay-3 group bg-white rounded-2xl hairline open:shadow-card">
@@ -845,7 +690,7 @@ tailwind.config = {
           <span class="font-semibold text-ink-900">האם השירות מתאים לעסק בתחילת הדרך?</span>
           <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#0A1834" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
-        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן. דווקא בתחילת הדרך חשוב לפתוח תיק נכון, להבין חובות דיווח, ולבנות התנהלות מסודרת.</div>
+        <div class="px-5 pb-5 text-ink-700/80 text-sm leading-relaxed">כן, הצעדים הראשונים הם מהחשובים ביותר. במשרדנו תקבלו ליווי מלא לדרך עצמאית מלאה.</div>
       </details>
 
       <details class="reveal reveal-delay-4 group bg-white rounded-2xl hairline open:shadow-card">
@@ -858,6 +703,11 @@ tailwind.config = {
     </div>
   </div>
 </section>
+
+</div><!-- /view-faq -->
+
+<!-- ====== VIEW: CONTACT ====== -->
+<div class="view" data-view="contact">
 
 <!-- ====== Contact ====== -->
 <section id="contact" class="relative py-20 lg:py-28 bg-white border-t border-line">
@@ -890,19 +740,19 @@ tailwind.config = {
             <div class="font-semibold text-ink-900">שליחת הודעה ישירה</div>
           </div>
         </a>
-        <a href="mailto:hello@example.com" class="flex items-center gap-3 p-4 rounded-2xl hairline bg-cream-50 hover:bg-cream transition">
+        <a href="mailto:info@gtcpas.co.il" class="flex items-center gap-3 p-4 rounded-2xl hairline bg-cream-50 hover:bg-cream transition">
           <span class="w-11 h-11 rounded-xl bg-ink-900 text-gold-400 grid place-items-center shrink-0">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </span>
           <div class="min-w-0">
             <div class="text-ink-700/60 text-xs">דוא״ל</div>
-            <div class="font-semibold text-ink-900 break-all">hello@example.com</div>
+            <div class="font-semibold text-ink-900 break-all">info@gtcpas.co.il</div>
           </div>
         </a>
       </div>
     </div>
 
-    <form class="reveal lg:col-span-7 bg-cream-50 rounded-3xl hairline p-6 sm:p-8" onsubmit="event.preventDefault(); this.querySelector('[data-ok]').classList.remove('hidden');">
+    <form class="reveal lg:col-span-7 bg-cream-50 rounded-3xl hairline p-6 sm:p-8">
       <div class="grid sm:grid-cols-2 gap-4">
         <label class="block">
           <span class="text-sm text-ink-900 font-medium">שם מלא</span>
@@ -946,6 +796,10 @@ tailwind.config = {
   </div>
 </section>
 
+</div><!-- /view-contact -->
+
+</main>
+
 <!-- ====== Footer ====== -->
 <footer class="bg-ink-900 text-cream/80">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid md:grid-cols-12 gap-10">
@@ -973,11 +827,11 @@ tailwind.config = {
     <div class="md:col-span-3">
       <div class="text-sm font-semibold text-gold-300 mb-3 tracking-wider">קישורים</div>
       <ul class="space-y-2 text-sm">
-        <li><a href="#services" class="hover:text-gold-300 transition">שירותים</a></li>
-        <li><a href="#process" class="hover:text-gold-300 transition">איך זה עובד</a></li>
-        <li><a href="#why" class="hover:text-gold-300 transition">למה אנחנו</a></li>
-        <li><a href="#faq" class="hover:text-gold-300 transition">שאלות נפוצות</a></li>
-        <li><a href="#contact" class="hover:text-gold-300 transition">יצירת קשר</a></li>
+        <li><a href="#services" data-tab="services" class="hover:text-gold-300 transition">שירותים</a></li>
+        <li><a href="#process" data-tab="process" class="hover:text-gold-300 transition">איך זה עובד</a></li>
+        <li><a href="#why" data-tab="why" class="hover:text-gold-300 transition">למה אנחנו</a></li>
+        <li><a href="#faq" data-tab="faq" class="hover:text-gold-300 transition">שאלות נפוצות</a></li>
+        <li><a href="#contact" data-tab="contact" class="hover:text-gold-300 transition">יצירת קשר</a></li>
       </ul>
     </div>
 
@@ -986,7 +840,7 @@ tailwind.config = {
       <ul class="space-y-2 text-sm">
         <li><a href="tel:+972509619393" class="hover:text-gold-300 transition">טלפון · 050-961-9393</a></li>
         <li><a href="https://wa.me/972509619393?text=%D7%94%D7%99%D7%99%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%95%D7%93%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" class="hover:text-gold-300 transition">WhatsApp</a></li>
-        <li><a href="mailto:hello@example.com" class="hover:text-gold-300 transition">דוא״ל</a></li>
+        <li><a href="mailto:info@gtcpas.co.il" class="hover:text-gold-300 transition">דוא״ל</a></li>
         <li><a href="https://instagram.com/" target="_blank" rel="noopener" class="hover:text-gold-300 transition">Instagram</a></li>
       </ul>
     </div>
@@ -1054,6 +908,68 @@ tailwind.config = {
 
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   document.querySelectorAll('.bar, [data-count]').forEach(el => io.observe(el));
+
+  // ====== Tab navigation: show one view at a time ======
+  const VIEWS = ['home','services','process','why','faq','contact'];
+  function switchView(name) {
+    if (!VIEWS.includes(name)) name = 'home';
+    document.querySelectorAll('[data-view]').forEach(v => {
+      v.classList.toggle('active', v.dataset.view === name);
+    });
+    document.querySelectorAll('[data-tab]').forEach(l => {
+      l.classList.toggle('active', l.dataset.tab === name);
+    });
+    // Re-trigger reveal animations inside the now-visible view
+    document.querySelectorAll('.view.active .reveal').forEach(el => {
+      el.classList.remove('in');
+      io.observe(el);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    const newHash = name === 'home' ? '' : '#' + name;
+    if (location.hash !== newHash) {
+      history.replaceState(null, '', location.pathname + newHash);
+    }
+  }
+  document.addEventListener('click', e => {
+    const link = e.target.closest('[data-tab]');
+    if (!link) return;
+    e.preventDefault();
+    const target = link.dataset.tab;
+    switchView(target);
+    // Close mobile menu
+    const menu = document.getElementById('menu');
+    if (menu) { menu.classList.remove('menu-open'); menu.classList.add('menu-closed'); }
+  });
+  window.addEventListener('hashchange', () => {
+    switchView(location.hash.replace('#','') || 'home');
+  });
+  // Initial load
+  switchView(location.hash.replace('#','') || 'home');
+
+  // ====== Contact form — send via mailto so it lands in Tamer's inbox ======
+  const TAMER_EMAIL = 'info@gtcpas.co.il'; // TODO: replace with real email
+  const contactForm = document.querySelector('#contact form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name    = contactForm.querySelector('input[type=text]').value.trim();
+      const phone   = contactForm.querySelector('input[type=tel]').value.trim();
+      const service = contactForm.querySelector('select').value || '—';
+      const msg     = contactForm.querySelector('textarea').value.trim();
+      const subject = `פנייה מהאתר — ${name || 'ללא שם'}`;
+      const body =
+`שם מלא: ${name}
+טלפון: ${phone}
+שירות מבוקש: ${service}
+
+הודעה:
+${msg}
+
+— נשלח מטופס יצירת קשר באתר G.T. CPAs Office`;
+      window.location.href = `mailto:${TAMER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      contactForm.querySelector('[data-ok]')?.classList.remove('hidden');
+    });
+  }
 
   function animateCount(el) {
     if (el.dataset.done) return; el.dataset.done = '1';
