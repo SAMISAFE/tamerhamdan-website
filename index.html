@@ -221,9 +221,9 @@ tailwind.config = {
 <!-- ====== Header ====== -->
 <header id="hdr" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
   <div class="nav-blur bg-cream/85 border-b border-line/70">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 lg:h-24 flex items-center justify-between gap-3">
       <a href="#home" data-tab="home" class="flex items-center gap-4 min-w-0">
-        <span class="logo-mark on-light h-14 sm:h-16 lg:h-[68px] shrink-0">
+        <span class="logo-mark on-light h-10 sm:h-12 lg:h-[60px] shrink-0">
           <img src="images/logo.png" alt="G.T. CPAs Office — לוגו המשרד" onerror="this.onerror=null;this.src='images/logo.jpg'" />
         </span>
         <span class="hidden md:flex flex-col leading-tight min-w-0 border-r border-line ps-0 pr-4">
@@ -266,7 +266,7 @@ tailwind.config = {
   </div>
 </header>
 
-<main id="top" class="pt-20 sm:pt-24">
+<main id="top" class="pt-16 sm:pt-20 lg:pt-24">
 
 <!-- ====== VIEW: HOME ====== -->
 <div class="view active" data-view="home">
@@ -277,12 +277,12 @@ tailwind.config = {
   <div class="absolute -top-32 -end-32 w-[28rem] h-[28rem] rounded-full bg-gold-100/40 blur-3xl pointer-events-none" aria-hidden="true"></div>
   <div class="absolute -bottom-40 -start-24 w-[28rem] h-[28rem] rounded-full bg-ink-900/5 blur-3xl pointer-events-none" aria-hidden="true"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 lg:pt-20 pb-16 lg:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-8 lg:pt-16 pb-10 lg:pb-20 grid lg:grid-cols-12 gap-6 lg:gap-14 items-center relative">
 
     <div class="lg:col-span-7 order-1">
       <div class="reveal eyebrow">משרד רואי חשבון · ליווי לעסקים בישראל</div>
 
-      <h1 class="reveal reveal-delay-1 display mt-4 text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.08] text-ink-900">
+      <h1 class="reveal reveal-delay-1 display mt-3 text-[2rem] sm:text-5xl lg:text-[3.6rem] leading-[1.1] text-ink-900">
         משרד רואי חשבון
         <span class="relative inline-block">
           <span class="relative z-10 text-gold-700">לעסקים</span>
@@ -290,12 +290,12 @@ tailwind.config = {
         </span>
       </h1>
 
-      <p class="reveal reveal-delay-2 mt-6 text-lg text-ink-700/85 max-w-xl leading-relaxed">
+      <p class="reveal reveal-delay-2 mt-4 text-base sm:text-lg text-ink-700/85 max-w-xl leading-relaxed">
         משרד <span class="font-semibold text-ink-900">G.T. CPAs Office</span> בהובלת רואה החשבון תאמר חמדאן —
         ראיית חשבון, מיסוי, הנהלת חשבונות, דוחות, החזרי מס וליווי פיננסי.
       </p>
 
-      <div class="reveal reveal-delay-3 mt-7 flex flex-wrap items-center gap-3">
+      <div class="reveal reveal-delay-3 mt-5 flex flex-wrap items-center gap-3">
         <a href="#contact" data-tab="contact" class="btn btn-primary">
           לקביעת שיחת ייעוץ
           <svg class="rtl-flip" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -308,12 +308,12 @@ tailwind.config = {
         </a>
       </div>
 
-      <p class="reveal reveal-delay-4 mt-4 text-sm text-ink-700/70">
+      <p class="reveal reveal-delay-4 mt-3 text-sm text-ink-700/70">
         ניצור קשר לתיאום שיחת ייעוץ ראשונית, ללא התחייבות.
       </p>
 
       <!-- Areas of practice (factual service categories) -->
-      <div class="reveal reveal-delay-4 mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="reveal reveal-delay-4 mt-6 lg:mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
         <div class="bg-white rounded-2xl hairline p-4 flex items-center gap-3">
           <span class="w-10 h-10 rounded-xl bg-ink-900 text-gold-400 grid place-items-center shrink-0">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 7h8M8 11h8M8 15h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
@@ -385,7 +385,7 @@ tailwind.config = {
 <div class="view" data-view="services">
 
 <!-- ====== Services ====== -->
-<section id="services" class="relative py-20 lg:py-28 bg-white border-y border-line">
+<section id="services" class="relative py-12 sm:py-16 lg:py-24 bg-white border-y border-line">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl">
       <div class="reveal eyebrow">תחומי שירות</div>
@@ -502,7 +502,7 @@ tailwind.config = {
 <div class="view" data-view="process">
 
 <!-- ====== Process ====== -->
-<section id="process" class="relative py-20 lg:py-28">
+<section id="process" class="relative py-12 sm:py-16 lg:py-24">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl">
       <div class="reveal eyebrow">איך זה עובד</div>
@@ -572,7 +572,7 @@ tailwind.config = {
 <div class="view" data-view="why">
 
 <!-- ====== Work Approach ====== -->
-<section id="why" class="relative py-20 lg:py-28 bg-white border-y border-line">
+<section id="why" class="relative py-12 sm:py-16 lg:py-24 bg-white border-y border-line">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
     <div class="lg:col-span-6">
       <div class="reveal eyebrow">סגנון העבודה</div>
@@ -653,7 +653,7 @@ tailwind.config = {
 <div class="view" data-view="faq">
 
 <!-- ====== FAQ ====== -->
-<section id="faq" class="relative py-20 lg:py-28">
+<section id="faq" class="relative py-12 sm:py-16 lg:py-24">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="reveal eyebrow text-center">שאלות נפוצות</div>
     <h2 class="reveal reveal-delay-1 display mt-3 text-3xl sm:text-4xl text-ink-900 leading-tight text-center">
@@ -710,7 +710,7 @@ tailwind.config = {
 <div class="view" data-view="contact">
 
 <!-- ====== Contact ====== -->
-<section id="contact" class="relative py-20 lg:py-28 bg-white border-t border-line">
+<section id="contact" class="relative py-12 sm:py-16 lg:py-24 bg-white border-t border-line">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-10">
     <div class="lg:col-span-5">
       <div class="reveal eyebrow">יצירת קשר</div>
