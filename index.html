@@ -131,8 +131,11 @@ tailwind.config = {
   :focus-visible { outline: 2px solid #C9A24F; outline-offset: 2px; border-radius: 8px; }
   .rtl-flip { transform: scaleX(-1); }
 
-  .menu-open { transform: translateY(0); opacity:1; pointer-events:auto; }
-  .menu-closed { transform: translateY(-8px); opacity:0; pointer-events:none; }
+  /* Mobile menu — float absolutely below the navbar so it never extends the header height */
+  .nav-blur { position: relative; }
+  #menu { position: absolute; top: 100%; left: 0; right: 0; }
+  .menu-open { transform: translateY(0); opacity:1; pointer-events:auto; visibility: visible; }
+  .menu-closed { transform: translateY(-8px); opacity:0; pointer-events:none; visibility: hidden; }
 
   /* Tab views — show one section at a time */
   .view { display: none; }
